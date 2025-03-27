@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .gallery-container {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .image-display {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navigation {
+            margin-top: 10px;
+        }
+
+        .navigation button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .navigation button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Gallery</h1>
+    <div class="gallery-container">
+        <img id="image-display" class="image-display" src="image1.jpg" alt="Gallery Image">
+        <div class="navigation">
+            <button id="prev-btn" onclick="prevImage()">Previous</button>
+            <button id="next-btn" onclick="nextImage()">Next</button>
+        </div>
+    </div>
+    <script>
+        const images = ["image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg"];
+        let currentIndex = 0;
+
+        function updateImage() {
+            const imageDisplay = document.getElementById('image-display');
+            imageDisplay.src = images[currentIndex];
+
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex === images.length - 1;
+        }
+
+        function prevImage() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateImage();
+            }
+        }
+
+        function nextImage() {
+            if (currentIndex < images.length - 1) {
+                currentIndex++;
+                updateImage();
+            }
+        }
+    </script>
+</body>
+</html>
